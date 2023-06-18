@@ -3,6 +3,7 @@ import { Persona } from './Persona';
 import { Dirección } from './Dirección';
 import { Email } from './Email';
 import { Teléfono } from './Teléfono';
+import { Agenda } from './Agenda';
 
 // Creamos los datos de e-mail
 let email1 = new Email('Personal', 'AliciaTorres@gmai.com');
@@ -24,17 +25,28 @@ let persona1 = new Persona('Alicia', 'Torres Castro', '34', '50384815T', '5 Dici
 let persona2 = new Persona('Juan', 'Romero Marquez', '50', '0238501894L', '14 Abril', 'Amarillo', 'Hombre', [direccion2], [email2], [telefono2], 'Pintor');
 let persona3 = new Persona('Laura', 'Prieto Flores', '22', '90023459Q', '8 Octubre', 'Verde', 'Mujer', [direccion3], [email3], [telefono3], 'Prima de Carla');
 
+let agenda = new Agenda();
+agenda.addPersona(persona1);
+agenda.addPersona(persona2);
+agenda.addPersona(persona3);
+
+// Mostramos el registro de cada persona
+console.log('Datos de la persona 1:', persona1);
+console.log('Datos de la persona 2:', persona2);
+console.log('Datos de la persona 3:', persona3);
+
+// Buscamos persona por DNI a persona1
+let personaAModificar = agenda.findByDNI(persona1.getDni());
+
 // Modificar un registro del correo, DNI, dirección, e-mail o teléfono
 // Ejemplo, Asignamos una nueva dirección, email y teléfono a la persona1
 let nuevaDireccion = new Dirección('Calle Alegría', '1', '6º', 'E', '28011', 'Madrid', 'Madrid');
 let nuevoEmail = new Email('Trabajo', 'Alitorres@gmail.com');
 let nuevoTelefono = new Teléfono('Trabajo', '912445098');
 
-persona1.addDireccion(nuevaDireccion);
-persona1.addEmail(nuevoEmail);
-persona1.addTelefono(nuevoTelefono);
+personaAModificar?.addDireccion(nuevaDireccion);
+personaAModificar?.addEmail(nuevoEmail);
+personaAModificar?.addTelefono(nuevoTelefono);
 
-// Mostramos el registro de cada persona
-console.log('Datos de la persona 1:', persona1);
-console.log('Datos de la persona 2:', persona2);
-console.log('Datos de la persona 3:', persona3);
+console.log('Datos modificados');
+console.log(persona1);
